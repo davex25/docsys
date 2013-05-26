@@ -6,16 +6,6 @@ import shutil
 import subprocess
 import docsys
 
-alen = len(sys.argv)
-
-if alen != 1 and alen != 2:
-    print("Only allowed argument is page height in millimeters.  Default is 279, if not supplied.")
-    exit()
-
-if alen == 2 and not sys.argv[1].isdigit():
-    print("Page height supplied must be a number (assumed to be in millimeters)")
-    exit()
-
 def FindImageNum(path):
     digitpart = os.path.splitext(path)[0][3:]
     if not digitpart.isdigit():
@@ -58,7 +48,19 @@ def DoConversion(minIndex):
             print("Converting " + os.path.join(root, f) + " to png format")
     docsys.WalkCurFolder(ConvertFile)
 
-startNum = FindStartImageNum()
-DoScan(startNum)
-DoConversion(startNum)
+def ScanDocs():
+    alen = len(sys.argv)
+
+    if alen != 1 and alen != 2:
+        print("Only allowed argument is page height in millimeters.  Default is 279, if not supplied.")
+        exit()
+
+    if alen == 2 and not sys.argv[1].isdigit():
+        print("Page height supplied must be a number (assumed to be in millimeters)")
+        exit()
+
+
+    startNum = FindStartImageNum()
+    DoScan(startNum)
+    DoConversion(startNum)
 

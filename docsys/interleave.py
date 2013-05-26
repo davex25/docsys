@@ -5,15 +5,6 @@ import os
 import shutil
 import docsys
 
-if len(sys.argv) != 3:
-    print("Need to specify start index of files to collate, and number of subsequent files.")
-    exit()
-
-for i in range(1, 2):
-    if not sys.argv[i].isdigit():
-        print("File index and count must both be numbers")
-        exit()
-
 class Interleaver:
     startIndex = -1
     count = 0
@@ -59,8 +50,19 @@ class Interleaver:
             self.CopyIndexToTemp(int(self.count / 2))
 
 
-inter = Interleaver(int(sys.argv[1]), int(sys.argv[2]))
-inter.CheckFilesExist()
-inter.CopyToTemp()
-inter.FinalizeCollate()
+
+def DoInterleave():
+    if len(sys.argv) != 3:
+        print("Need to specify start index of files to collate, and number of subsequent files.")
+        exit()
+
+    for i in range(1, 2):
+        if not sys.argv[i].isdigit():
+            print("File index and count must both be numbers")
+            exit()
+
+    inter = Interleaver(int(sys.argv[1]), int(sys.argv[2]))
+    inter.CheckFilesExist()
+    inter.CopyToTemp()
+    inter.FinalizeCollate()
 

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from setuptools import setup, find_packages
 import sys, os
 
@@ -13,14 +15,17 @@ Scripts for use with a scanner, e.g. multiple document scan and convert to png, 
       author='Dave Friberg',
       author_email='dfriberg23@gmail.com',
       url='',
-      license='',
-      packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+      license='Apache',
+      packages=['docsys'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
         'PyTesser'
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
+      entry_points={
+          'console_scripts': [
+            'interleave = docsys.interleave:DoInterleave',
+            'scandocs = docsys.scandocs:ScanDocs'
+            ]
+      }
       )
