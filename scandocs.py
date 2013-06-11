@@ -64,3 +64,5 @@ def ScanDocs():
     DoScan(startNum)
     DoConversion(startNum)
 
+ScanDocs()
+

@@ -66,3 +66,5 @@ def DoInterleave():
     inter.CopyToTemp()
     inter.FinalizeCollate()
 
+DoInterleave()
+
